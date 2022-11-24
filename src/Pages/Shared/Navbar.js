@@ -25,7 +25,7 @@ const Navbar = () => {
     const MenuItems =
         <>
             <li><Link to="/home">Home</Link></li>
-            <li><Link to="/team">Our Team</Link></li>
+            <li><Link to="/allCars">All Cars</Link></li>
             <li><Link to="/dashboard">Dashboard</Link></li>
             <li><Link to="/contact">Contact Us</Link></li>
             <li><Link to="/login">Login</Link></li>
