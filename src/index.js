@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AOS from 'aos'
+import 'aos/dist/aos.css';
+AOS.init()
 
 const queryClient = new QueryClient()
 

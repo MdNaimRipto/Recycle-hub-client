@@ -9,7 +9,7 @@ module.exports = {
         recycleHubTheme: {
           primary: "#ff5200",
           secondary: "#ddd",
-          accent: "#000",
+          accent: "rgb(229 231 235)",
           neutral: "#000",
           "base-100": "#FFFFFF"
         }
@@ -17,7 +17,7 @@ module.exports = {
       {
         dark: {
           "base-100": "#131516",
-          accent: "#FFFFFF"
+          accent: "rgb(31 41 55)"
         }
       }
     ]
