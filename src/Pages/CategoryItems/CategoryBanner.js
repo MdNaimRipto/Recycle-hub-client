@@ -8,7 +8,7 @@ const CategoryBanner = () => {
             <div className="text-neutral-content w-4/5 md:w-[84%] lg:w-4/5 container">
                 <div>
                     <h1
-                        className="mb-5 text-4xl md:text-5xl leading-[45px] md:leading-[60px] lg:leading-[70px] font-bold">
+                        className="mb-5 text-2xl md:text-4xl lg:text-5xl leading-[45px] md:leading-[60px] lg:leading-[70px] font-bold">
                         FIND YOUR DREAM CAR FROM YOUR FAVORITE BRAND</h1>
                     <p className="mb-5">
                         Explore all the cars FROM this brand and find the best car what you love and afford.
