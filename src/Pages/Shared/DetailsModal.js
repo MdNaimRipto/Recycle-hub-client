@@ -64,7 +64,7 @@ const DetailsModal = ({ details, setDetails }) => {
                                         <span className='font-semibold'>Description:</span> {discreption}
                                     </p>
                                     <label htmlFor="buyNow-modal" className="btn btn-primary w-full mt-3">
-                                        Add to Cart
+                                        Book Now
                                     </label>
                                 </div>
                             </div>

@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AOS from 'aos'
 import 'aos/dist/aos.css';
+import AuthProvider from './ContextProvider/AuthProvider';
 AOS.init()
 
 const queryClient = new QueryClient()
@@ -14,9 +15,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      {/* Use Auth provider here */}
-      <App />
-      {/* End Auth provider here */}
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

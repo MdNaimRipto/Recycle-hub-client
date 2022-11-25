@@ -30,7 +30,7 @@ const BuyNowModal = ({ details }) => {
                         <button
                             type='submit'
                             className='btn btn-primary text-white font-semibold w-full'>
-                            Add to Cart
+                            Book Now
                         </button>
                     </form>
                 </div>

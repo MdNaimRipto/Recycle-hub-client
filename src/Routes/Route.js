@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router-dom"
+import LoginRegisterLayout from "../Layout/LoginRegisterLayout"
 import Main from "../Layout/Main"
 import AllCars from "../Pages/Cars/AllCars"
 import CategoryItems from "../Pages/CategoryItems/CategoryItems"
 import Home from "../Pages/Home/Home"
+import Register from "../Pages/LoginRegister/Register"
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +29,16 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => {
                     return fetch(`http://localhost:5000/categoryItem/${params.id}`)
                 }
+            }
+        ]
+    },
+    {
+        path: "/",
+        element: <LoginRegisterLayout />,
+        children: [
+            {
+                path: "/register",
+                element: <Register />
             }
         ]
     }
