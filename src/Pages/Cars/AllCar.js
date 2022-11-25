@@ -1,7 +1,7 @@
 import React from 'react';
 
-const AllCar = ({ allCar }) => {
-    const { img, name, location, resalePrice, originalPrice, timeUsed, date } = allCar
+const AllCar = ({ allCar, setDetails }) => {
+    const { img, name, location, resalePrice, timeUsed, } = allCar
     return (
         <div data-aos="fade-up" className="flex flex-col h-full">
             <img
@@ -16,17 +16,20 @@ const AllCar = ({ allCar }) => {
                         location: {location}
                     </p>
                     <p className="text-sm py-1">
-                        Current Price: {resalePrice} / Original Price: {originalPrice}
+                        Resale Price: {resalePrice}
                     </p>
                     <p className="text-sm pb-1">
                         Years Used: {timeUsed}
                     </p>
-                    <p className="text-sm pb-1">
-                        Added Date: {date}
-                    </p>
                 </div>
-                <button className='btn btn-primary rounded-t-none w-full text-white'>Buy Now</button>
+                <label
+                    onClick={() => { setDetails(allCar) }}
+                    htmlFor="details-modal"
+                    className='btn btn-primary rounded-t-none w-full text-white'>
+                    View Details
+                </label>
             </div>
+
         </div>
     );
 };

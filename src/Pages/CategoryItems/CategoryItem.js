@@ -1,7 +1,9 @@
 import React from 'react';
+// import CategoryDetailsModal from './CategoryDetailsModal';
 
-const CategoryItem = ({ categoryItem }) => {
+const CategoryItem = ({ categoryItem, setDetails }) => {
     const { img, name, location, resalePrice, originalPrice, timeUsed, date } = categoryItem
+
     return (
         <div data-aos="fade-up" className="flex flex-col h-full">
             <img
@@ -25,8 +27,15 @@ const CategoryItem = ({ categoryItem }) => {
                         Added Date: {date}
                     </p>
                 </div>
-                <button className='btn btn-primary rounded-t-none w-full text-white'>Buy Now</button>
+                <label
+                    onClick={() => { setDetails(categoryItem) }}
+                    htmlFor="details-modal"
+                    className='btn btn-primary rounded-t-none w-full text-white'
+                >
+                    View Details
+                </label>
             </div>
+            {/* <CategoryDetailsModal details={categoryItem} /> */}
         </div>
     );
 };

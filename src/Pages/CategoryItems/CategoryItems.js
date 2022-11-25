@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import BuyNowModal from '../Shared/BuyNowModal';
+import DetailsModal from '../Shared/DetailsModal';
+// import BuyNowModal from '../Shared/BuyNowModal';
+// import DetailsModal from '../Shared/DetailsModal';
 import CategoryBanner from './CategoryBanner';
 import CategoryItem from './CategoryItem';
 
 const CategoryItems = () => {
     const categoryItems = useLoaderData()
-    console.log(categoryItems)
+    const [details, setDetails] = useState(null)
     return (
         <>
             <CategoryBanner />
@@ -17,10 +21,17 @@ const CategoryItems = () => {
                             <CategoryItem
                                 key={categoryItem._id}
                                 categoryItem={categoryItem}
+                                setDetails={setDetails}
                             />)
                     }
                 </div>
             </div>
+            {
+                details !== null && <DetailsModal details={details} setDetails={setDetails} />
+            }
+            {
+                <BuyNowModal details={details} />
+            }
         </>
     );
 };

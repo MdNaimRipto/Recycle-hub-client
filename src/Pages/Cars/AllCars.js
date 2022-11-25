@@ -1,10 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
+import BuyNowModal from '../Shared/BuyNowModal';
+import DetailsModal from '../Shared/DetailsModal';
 import Loading from "../Shared/Loading"
 import AllCar from './AllCar';
 import AllCarsBanner from './AllCarsBanner';
 
 const AllCars = () => {
+    const [details, setDetails] = useState(null)
     const { data: allCars = [], isLoading } = useQuery({
         queryKey: ["cars"],
         queryFn: async () => {
@@ -27,10 +30,17 @@ const AllCars = () => {
                             <AllCar
                                 key={allCar._id}
                                 allCar={allCar}
+                                setDetails={setDetails}
                             />)
                     }
                 </div>
             </div>
+            {
+                details !== null && <DetailsModal details={details} setDetails={setDetails} />
+            }
+            {
+                <BuyNowModal />
+            }
         </>
     );
 };

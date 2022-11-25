@@ -1,7 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
+import BuyNowModal from '../Shared/BuyNowModal';
+import DetailsModal from '../Shared/DetailsModal';
 
 const LatestCars = () => {
+    const [details, setDetails] = useState(null)
     const { data: latestCars = [] } = useQuery({
         queryKey: ["latestCars"],
         queryFn: async () => {
@@ -29,25 +32,31 @@ const LatestCars = () => {
                                     <div className="p-5 font-semibold">
                                         <h6 className="mb-2 text-base md:text-base lg:text-2xl font-semibold leading-5">{category.name}</h6>
                                         <p className="text-sm pt-1">
-                                            Brand: {category.brand}
-                                        </p>
-                                        <p className="text-sm pt-1">
                                             location: {category.location}
                                         </p>
                                         <p className="text-sm py-1">
-                                            Current Price: {category.resalePrice} / Original Price: {category.originalPrice}
-                                        </p>
-                                        <p className="text-sm pb-1">
-                                            Years Used: {category.timeUsed}
+                                            Resale Price: {category.resalePrice}
                                         </p>
                                         <p className="text-sm pb-1">
                                             Added Date: {category.date}
                                         </p>
                                     </div>
-                                    <button className='btn btn-primary rounded-t-none w-full text-white'>Buy Now</button>
+                                    <label
+                                        onClick={() => { setDetails(category) }}
+                                        htmlFor="details-modal"
+                                        className='btn btn-primary rounded-t-none w-full text-white'
+                                    >
+                                        View Details
+                                    </label>
                                 </div>
                             </div>
                         )
+                    }
+                    {
+                        details !== null && <DetailsModal details={details} setDetails={setDetails} />
+                    }
+                    {
+                        <BuyNowModal details={details} />
                     }
                 </div>
             </div>
