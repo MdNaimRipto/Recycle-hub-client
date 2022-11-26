@@ -31,7 +31,7 @@ const CategoryItems = ({ category }) => {
                 details !== null && <DetailsModal details={details} setDetails={setDetails} />
             }
             {
-                <BuyNowModal details={details} />
+                details !== null && <BuyNowModal details={details} />
             }
         </>
     );

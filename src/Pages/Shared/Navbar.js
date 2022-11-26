@@ -29,7 +29,7 @@ const Navbar = () => {
             <li><Link to="/home">Home</Link></li>
             <li><Link to="/allCars">All Cars</Link></li>
             <li><Link to="/dashboard">Dashboard</Link></li>
-            <li><Link to="/contact">Contact Us</Link></li>
+            <li><Link to="/Blogs">Blogs</Link></li>
             {
                 !user?.uid ? <li><Link to="/login">Login</Link></li>
                     : <div className="dropdown dropdown-end hidden md:hidden lg:block">
@@ -89,11 +89,11 @@ const Navbar = () => {
                     }
                 </div>
                 <Link to="/"
-                    className="font-bold flex justify-between items-center w-[52%] md:w-[38%]">
+                    className="font-bold flex justify-between items-center w-[52%] md:w-[33%]">
                     <div className='w-1/4'>
                         <img src={logo} alt="" />
                     </div>
-                    <span className='text-2xl md:text-4xl'>Recycle Hub</span>
+                    <span className='text-2xl md:text-[30px] lg:text-4xl'>Recycle Hub</span>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">

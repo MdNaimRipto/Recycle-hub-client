@@ -39,7 +39,7 @@ const AllCars = () => {
                 details !== null && <DetailsModal details={details} setDetails={setDetails} />
             }
             {
-                <BuyNowModal />
+                details !== null && <BuyNowModal details={details} />
             }
         </>
     );

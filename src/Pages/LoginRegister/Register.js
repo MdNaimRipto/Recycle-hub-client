@@ -133,6 +133,7 @@ const Register = () => {
                                     type="radio"
                                     name="role"
                                     value="buyer"
+                                    checked
                                     className='input input-bordered w-1/4 font-normal'
                                     {...register("role", { required: "User Role Required" })}
                                 />
