@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from "react-router-dom"
 import logo from "../../Assets/logo.png"
+import { AuthContext } from '../../ContextProvider/AuthProvider';
 
 const Navbar = () => {
+    const { logout, user } = useContext(AuthContext)
 
     const [dark, setDark] = useState(false)
     const handleDark = () => {
@@ -28,26 +30,28 @@ const Navbar = () => {
             <li><Link to="/allCars">All Cars</Link></li>
             <li><Link to="/dashboard">Dashboard</Link></li>
             <li><Link to="/contact">Contact Us</Link></li>
-            <li><Link to="/login">Login</Link></li>
-            <div className="dropdown dropdown-end hidden md:hidden lg:block">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full">
-                        <img src="https://placeimg.com/80/80/people" alt="" />
+            {
+                !user?.uid ? <li><Link to="/login">Login</Link></li>
+                    : <div className="dropdown dropdown-end hidden md:hidden lg:block">
+                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img src="https://placeimg.com/80/80/people" alt="" />
+                            </div>
+                        </label>
+                        <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                            <li>
+                                <Link className="justify-between">
+                                    Profile
+                                </Link>
+                            </li>
+                            <li className='flex justify-between items-center'>
+                                <Link>Dark Mode</Link>
+                                <input type="checkbox" onClick={handleDark} className="toggle" defaultChecked />
+                            </li>
+                            <li><button onClick={logout}>Logout</button></li>
+                        </ul>
                     </div>
-                </label>
-                <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                    <li>
-                        <Link className="justify-between">
-                            Profile
-                        </Link>
-                    </li>
-                    <li className='flex justify-between items-center'>
-                        <Link>Dark Mode</Link>
-                        <input type="checkbox" onClick={handleDark} className="toggle" defaultChecked />
-                    </li>
-                    <li><Link>Logout</Link></li>
-                </ul>
-            </div>
+            }
         </>
     return (
         <div className="navbar bg-base-100 py-6 container mx-auto border-b border-gray-300">
@@ -77,7 +81,7 @@ const Navbar = () => {
                                 <Link>Dark Mode</Link>
                                 <input type="checkbox" onClick={handleDark} className="toggle" defaultChecked />
                             </li>
-                            <li><Link>Logout</Link></li>
+                            <li><button onClick={logout}>Logout</button></li>
                         </ul>
                     </div>
                 </div>

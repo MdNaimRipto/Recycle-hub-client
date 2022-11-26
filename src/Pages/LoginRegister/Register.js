@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../ContextProvider/AuthProvider';
 import GoogleLogin from './GoogleLogin';
 
 const Register = () => {
-    const { userRegister, updateUser, setUser } = useContext(AuthContext)
+    const { userRegister, updateUser } = useContext(AuthContext)
+    const [registerError, setRegisterError] = useState('')
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -14,14 +15,6 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const imageHostingKey = process.env.REACT_APP_imgBB_key
     const handleRegister = (data) => {
-        // e.preventDefault()
-        // const form = e.target
-        // const name = form.name.value
-        // const email = form.email.value
-        // const password = form.password.value
-        // const role = form.role.value
-        // const img = form.img;
-
         const name = data.name
         const email = data.email
         const password = data.password
@@ -48,23 +41,24 @@ const Register = () => {
                             }
                             updateUser(userInfo)
                             navigate(from, { replace: true })
+                            saveUserInfo(name, email, img, role)
                         })
-                        .catch(err => console.error(err))
+                        .catch(err => {
+                            console.error(err)
+                            setRegisterError(err.message)
+                        })
                 }
             })
 
-
-        // userRegister(email, password)
-        //     .then(result => {
-        //         const user = result.user;
-        //         console.log(user)
-        //         const userInfo = {
-        //             displayName: name
-        //         }
-        //         updateUser(userInfo)
-        //         navigate(from, { replace: true })
-        //     })
-        //     .catch(err => console.error(err))
+        const saveUserInfo = (name, email, img, role) => {
+            const user = {
+                name: name,
+                email: email,
+                img: img,
+                role: role
+            }
+            console.log(user)
+        }
     }
 
     return (
@@ -155,7 +149,6 @@ const Register = () => {
                             aria-invalid={errors.img ? true : false}
                             className="file-input file-input-bordered w-full" />
                     </div>
-                    <input type="submit" className='btn btn-primary text-white w-full' value="Register" />
                     {
                         errors.name &&
                         <p role="alert"
@@ -181,7 +174,15 @@ const Register = () => {
                         <p role="alert"
                             className='text-red-500 text-center my-3 font-semibold'>
                             {errors.img?.message}
-                        </p>}
+                        </p>
+                    }
+                    {
+                        registerError &&
+                        <p className='text-red-500 text-center my-3 font-semibold'>
+                            {registerError}
+                        </p>
+                    }
+                    <input type="submit" className='btn btn-primary text-white w-full' value="Register" />
                 </form>
 
                 <p className='text-sm text-center font-semibold mt-3 mb-5'>

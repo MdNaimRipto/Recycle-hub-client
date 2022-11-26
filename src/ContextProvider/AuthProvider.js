@@ -6,6 +6,7 @@ import {
     // GoogleAuthProvider,
     onAuthStateChanged,
     signInWithEmailAndPassword,
+    signOut,
     updateProfile,
 } from "firebase/auth"
 
@@ -33,6 +34,10 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, userInfo)
     }
 
+    const logout = () => {
+        return signOut(auth)
+    }
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             console.log(currentUser)
@@ -50,7 +55,8 @@ const AuthProvider = ({ children }) => {
         setUser,
         updateUser,
         user,
-        loading
+        loading,
+        logout
     }
     return (
         <AuthContext.Provider value={AuthInfo}>
