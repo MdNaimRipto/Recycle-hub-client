@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router-dom"
+import DashboardLayout from "../Layout/DashboardLayout"
 import LoginRegisterLayout from "../Layout/LoginRegisterLayout"
 import Main from "../Layout/Main"
 import AllCars from "../Pages/Cars/AllCars"
 import CategoryItems from "../Pages/CategoryItems/CategoryItems"
+import Dashboard from "../Pages/Dashboard/Dashboard"
 import Home from "../Pages/Home/Home"
 import Login from "../Pages/LoginRegister/Login"
 import Register from "../Pages/LoginRegister/Register"
@@ -33,6 +35,17 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => {
                     return fetch(`http://localhost:5000/categoryItem/${params.id}`)
                 }
+            }
+        ]
+    },
+    {
+        path: "/",
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: "/dashboard",
+                element: <Dashboard />
             }
         ]
     },

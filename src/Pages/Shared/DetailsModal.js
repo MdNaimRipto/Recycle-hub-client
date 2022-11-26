@@ -43,7 +43,7 @@ const DetailsModal = ({ details, setDetails }) => {
                                     <p
                                         className="text-bas md:text-lg pb-2 flex justify-between items-center w-[30%]">
                                         {
-                                            verified && <GoVerified className='text-blue-500' />
+                                            verified && <GoVerified className='text-blue-600' />
                                         }
                                         <small className='font-semibold'>
                                             <span>Seller:</span> {seller}
