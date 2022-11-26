@@ -6,12 +6,14 @@ import CategoryItems from "../Pages/CategoryItems/CategoryItems"
 import Home from "../Pages/Home/Home"
 import Login from "../Pages/LoginRegister/Login"
 import Register from "../Pages/LoginRegister/Register"
+import ErrorPage from "../Pages/Shared/ErrorPage"
 import PrivateRoute from "./PrivateRoute"
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: "/",
@@ -36,6 +38,7 @@ export const router = createBrowserRouter([
     },
     {
         path: "/",
+        errorElement: <ErrorPage />,
         element: <LoginRegisterLayout />,
         children: [
             {

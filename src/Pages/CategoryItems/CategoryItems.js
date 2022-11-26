@@ -7,7 +7,8 @@ import DetailsModal from '../Shared/DetailsModal';
 import CategoryBanner from './CategoryBanner';
 import CategoryItem from './CategoryItem';
 
-const CategoryItems = () => {
+const CategoryItems = ({ category }) => {
+    console.log(category)
     const categoryItems = useLoaderData()
     const [details, setDetails] = useState(null)
     return (

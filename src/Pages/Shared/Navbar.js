@@ -65,25 +65,28 @@ const Navbar = () => {
                             {MenuItems}
                         </ul>
                     </div>
-                    <div className="dropdown dropdown-end block md:block lg:hidden">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img src="https://placeimg.com/80/80/people" alt='' />
-                            </div>
-                        </label>
-                        <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                            <li>
-                                <Link className="justify-between">
-                                    Profile
-                                </Link>
-                            </li>
-                            <li className='flex justify-between items-center flex-row'>
-                                <Link>Dark Mode</Link>
-                                <input type="checkbox" onClick={handleDark} className="toggle" defaultChecked />
-                            </li>
-                            <li><button onClick={logout}>Logout</button></li>
-                        </ul>
-                    </div>
+                    {
+                        user?.uid &&
+                        <div className="dropdown dropdown-end block md:block lg:hidden">
+                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img src="https://placeimg.com/80/80/people" alt='' />
+                                </div>
+                            </label>
+                            <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                                <li>
+                                    <Link className="justify-between">
+                                        Profile
+                                    </Link>
+                                </li>
+                                <li className='flex justify-between items-center flex-row'>
+                                    <Link>Dark Mode</Link>
+                                    <input type="checkbox" onClick={handleDark} className="toggle" defaultChecked />
+                                </li>
+                                <li><button onClick={logout}>Logout</button></li>
+                            </ul>
+                        </div>
+                    }
                 </div>
                 <Link to="/"
                     className="font-bold flex justify-between items-center w-[52%] md:w-[38%]">
