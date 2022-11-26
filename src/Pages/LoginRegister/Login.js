@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../ContextProvider/AuthProvider';
 import GoogleLogin from './GoogleLogin';
 
 const Login = () => {
+    const { userLogin } = useContext(AuthContext)
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('')
     const handleLogin = (data) => {
         const email = data.email;
         const password = data.password;
-        console.log(email, password)
+        userLogin(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch(err => console.error(err))
     }
     return (
         <div className='flex items-center justify-center my-12'>
-            <div className="w-[96%] md:w-[30%] px-5 py-6 border border-info rounded-xl font-semibold">
+            <div className="w-[96%] md:w-[60%] lg:w-[30%] px-5 py-6 border border-info rounded-xl font-semibold">
                 <h2 className='text-center text-3xl font-semibold'>Login</h2>
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className='mb-5'>

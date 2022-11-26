@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../ContextProvider/AuthProvider';
 import GoogleLogin from './GoogleLogin';
 
 const Register = () => {
+    const { userRegister, updateUser, setUser } = useContext(AuthContext)
+
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/"
+
     const { register, handleSubmit, formState: { errors } } = useForm()
     const imageHostingKey = process.env.REACT_APP_imgBB_key
     const handleRegister = (data) => {
-        const name = data.name;
-        const email = data.email;
-        const password = data.password;
+        // e.preventDefault()
+        // const form = e.target
+        // const name = form.name.value
+        // const email = form.email.value
+        // const password = form.password.value
+        // const role = form.role.value
+        // const img = form.img;
+
+        const name = data.name
+        const email = data.email
+        const password = data.password
         const role = data.role
-        const img = data.img[0];
+        const img = data.img[0]
+
         const formData = new FormData();
         formData.append("image", img);
         const url = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`
@@ -22,16 +38,33 @@ const Register = () => {
             .then(res => res.json())
             .then(imgData => {
                 if (imgData.success) {
-                    const user = {
-                        name: name,
-                        email: email,
-                        img: imgData.data.url,
-                        role: role
-                    }
-                    console.log(user)
+                    userRegister(email, password)
+                        .then(result => {
+                            const user = result.user;
+                            console.log(user)
+                            const userInfo = {
+                                displayName: name,
+                                photoURL: imgData.data.url
+                            }
+                            updateUser(userInfo)
+                            navigate(from, { replace: true })
+                        })
+                        .catch(err => console.error(err))
                 }
             })
-        console.log(name, email, password, img)
+
+
+        // userRegister(email, password)
+        //     .then(result => {
+        //         const user = result.user;
+        //         console.log(user)
+        //         const userInfo = {
+        //             displayName: name
+        //         }
+        //         updateUser(userInfo)
+        //         navigate(from, { replace: true })
+        //     })
+        //     .catch(err => console.error(err))
     }
 
     return (
@@ -46,6 +79,7 @@ const Register = () => {
                         </label>
                         <input
                             type="text"
+                            name="name"
                             {...register("name", { required: "User Name Required" })}
                             aria-invalid={errors.name ? true : false}
                             className="input input-bordered w-full font-normal" />
@@ -56,6 +90,7 @@ const Register = () => {
                         </label>
                         <input
                             type="email"
+                            name="email"
                             {...register("email", { required: "Email Address Required" })}
                             aria-invalid={errors.email ? true : false}
                             className="input input-bordered w-full font-normal"
@@ -67,6 +102,7 @@ const Register = () => {
                         </label>
                         <input
                             type="password"
+                            name="password"
                             className='input input-bordered w-full font-normal'
                             {...register("password",
                                 {
@@ -91,6 +127,7 @@ const Register = () => {
                                 <p>Buyer</p>
                                 <input
                                     type="radio"
+                                    name="role"
                                     value="buyer"
                                     className='input input-bordered w-1/4 font-normal'
                                     {...register("role", { required: "User Role Required" })}
@@ -100,6 +137,7 @@ const Register = () => {
                                 <p>Seller</p>
                                 <input
                                     type="radio"
+                                    name="role"
                                     value="seller"
                                     className='input input-bordered w-1/4 font-normal'
                                     {...register("role", { required: "User Role Required" })}
@@ -110,6 +148,7 @@ const Register = () => {
                     <div className='mb-5'>
                         <input
                             type="file"
+                            name="file"
                             {...register("img", {
                                 required: "Image is Required"
                             })}
