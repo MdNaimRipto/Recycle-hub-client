@@ -58,11 +58,11 @@ const Register = () => {
                 role: role
             }
             fetch("http://localhost:5000/users", {
-                method: "POST",
+                method: "PUT",
                 headers: {
-                    "content-type": "application/json",
+                    "content-type": "application/json"
                 },
-                body: JSON.stringify(user)
+                body: JSON.stringify({ user })
             })
                 .then(res => res.json())
                 .then(data => {

@@ -13,27 +13,27 @@ const GoogleLogin = () => {
         googleLogin()
             .then(result => {
                 const user = result.user
-                console.log(user)
                 navigate(from, { replace: true })
-                saveUserInfo(user.displayName, user.email, user.photoURL)
+                saveGoogleUserInfo(user.displayName, user.email, user.photoURL)
             })
             .catch(err => {
                 console.error(err)
             })
     }
-    const saveUserInfo = (name, email, img) => {
+    const saveGoogleUserInfo = (name, email, img) => {
         const user = {
             name: name,
             email: email,
             img: img,
             role: "buyer"
         }
+        console.log(user)
         fetch("http://localhost:5000/users", {
-            method: "POST",
+            method: "PUT",
             headers: {
-                "content-type": "application/json",
+                "content-type": "application/json"
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify({ user })
         })
             .then(res => res.json())
             .then(data => {

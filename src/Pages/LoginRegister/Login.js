@@ -28,6 +28,7 @@ const Login = () => {
                 setLoginError(err.message)
             })
     }
+
     return (
         <div className='flex items-center justify-center my-12'>
             <div className="w-[96%] md:w-[60%] lg:w-[30%] px-5 py-6 border border-info rounded-xl font-semibold">
@@ -76,7 +77,7 @@ const Login = () => {
                         </p>
                     }
                 </form>
-                <p className='text-sm text-center font-semibold text-neutral mt-3 mb-5'>
+                <p className='text-sm text-center font-semibold mt-3 mb-5'>
                     New To Doctor's Portal?
                     <Link to="/register" className='text-primary ml-1'>Create New Account</Link>
                 </p>
