@@ -8,7 +8,6 @@ export const useBuyer = (email) => {
             .then(res => res.json())
             .then(data => {
                 if (data.isBuyer === true) {
-                    console.log(data)
                     setIsBuyer(data.isBuyer)
                     setIsBuyerLoading(false)
                 }

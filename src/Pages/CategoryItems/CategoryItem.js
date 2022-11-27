@@ -1,8 +1,8 @@
 import React from 'react';
-// import CategoryDetailsModal from './CategoryDetailsModal';
+import { MdOutlineAddCircleOutline } from "react-icons/md"
 
 const CategoryItem = ({ categoryItem, setDetails }) => {
-    const { img, name, location, resalePrice, originalPrice, timeUsed, date } = categoryItem
+    const { img, name, location, resalePrice, timeUsed } = categoryItem
 
     return (
         <div data-aos="fade-up" className="flex flex-col h-full">
@@ -18,14 +18,16 @@ const CategoryItem = ({ categoryItem, setDetails }) => {
                         location: {location}
                     </p>
                     <p className="text-sm py-1">
-                        Current Price: {resalePrice} / Original Price: {originalPrice}
+                        Resale Price: TK.{resalePrice}
                     </p>
-                    <p className="text-sm pb-1">
-                        Years Used: {timeUsed}
-                    </p>
-                    <p className="text-sm pb-1">
-                        Added Date: {date}
-                    </p>
+                    <div className='flex justify-between items-center'>
+                        <p className="text-sm pb-1">
+                            Years Used: {timeUsed}
+                        </p>
+                        <div className='tooltip cursor-pointer' data-tip="Add to Wishlist">
+                            <MdOutlineAddCircleOutline className='text-xl' />
+                        </div>
+                    </div>
                 </div>
                 <label
                     onClick={() => { setDetails(categoryItem) }}

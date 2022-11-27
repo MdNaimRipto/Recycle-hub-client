@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import BuyNowModal from '../Shared/BuyNowModal';
 import DetailsModal from '../Shared/DetailsModal';
+import { MdOutlineAddCircleOutline } from "react-icons/md"
 
 const LatestCars = () => {
     const [details, setDetails] = useState(null)
@@ -35,11 +36,16 @@ const LatestCars = () => {
                                             location: {category.location}
                                         </p>
                                         <p className="text-sm py-1">
-                                            Resale Price: {category.resalePrice}
+                                            Resale Price: TK.{category.resalePrice}
                                         </p>
-                                        <p className="text-sm pb-1">
-                                            Added Date: {category.date}
-                                        </p>
+                                        <div className='flex justify-between items-center'>
+                                            <p className="text-sm pb-1">
+                                                Years Used: {category.timeUsed}
+                                            </p>
+                                            <div className='tooltip cursor-pointer' data-tip="Add to Wishlist">
+                                                <MdOutlineAddCircleOutline className='text-xl' />
+                                            </div>
+                                        </div>
                                     </div>
                                     <label
                                         onClick={() => { setDetails(category) }}

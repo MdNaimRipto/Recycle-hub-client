@@ -1,4 +1,5 @@
 import React from 'react';
+import { MdOutlineAddCircleOutline } from "react-icons/md"
 
 const AllCar = ({ allCar, setDetails }) => {
     const { img, name, location, resalePrice, timeUsed, } = allCar
@@ -16,11 +17,16 @@ const AllCar = ({ allCar, setDetails }) => {
                         location: {location}
                     </p>
                     <p className="text-sm py-1">
-                        Resale Price: {resalePrice}
+                        Resale Price: TK.{resalePrice}
                     </p>
-                    <p className="text-sm pb-1">
-                        Years Used: {timeUsed}
-                    </p>
+                    <div className='flex justify-between items-center'>
+                        <p className="text-sm pb-1">
+                            Years Used: {timeUsed}
+                        </p>
+                        <div className='tooltip cursor-pointer' data-tip="Add to Wishlist">
+                            <MdOutlineAddCircleOutline className='text-xl' />
+                        </div>
+                    </div>
                 </div>
                 <label
                     onClick={() => { setDetails(allCar) }}

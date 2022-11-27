@@ -42,7 +42,7 @@ const MyOrders = () => {
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Image</th>
+                                        <th>Car Image</th>
                                         <th>Brand</th>
                                         <th>Model</th>
                                         <th>Price</th>

@@ -4,16 +4,23 @@ import LoginRegisterLayout from "../Layout/LoginRegisterLayout"
 import Main from "../Layout/Main"
 import AllCars from "../Pages/Cars/AllCars"
 import CategoryItems from "../Pages/CategoryItems/CategoryItems"
+import AddProducts from "../Pages/Dashboard/AddProducts"
+import AllBuyers from "../Pages/Dashboard/AllBuyers"
+import AllSellers from "../Pages/Dashboard/AllSellers"
 
 import Dashboard from "../Pages/Dashboard/Dashboard"
 import MyOrders from "../Pages/Dashboard/MyOrders"
+import MyProducts from "../Pages/Dashboard/MyProducts"
+import Wishlists from "../Pages/Dashboard/Wishlists"
 import Home from "../Pages/Home/Home"
 import Login from "../Pages/LoginRegister/Login"
 import Register from "../Pages/LoginRegister/Register"
 import ErrorPage from "../Pages/Shared/ErrorPage"
+import AdminRoute from "./AdminRoute"
 import BuyerRoute from "./BuyerRoute"
 // import Loading from "../Pages/Shared/Loading"
 import PrivateRoute from "./PrivateRoute"
+import SellerRoute from "./SellerRoute"
 
 export const router = createBrowserRouter([
     {
@@ -54,6 +61,26 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard/myOrders",
                 element: <BuyerRoute><MyOrders /></BuyerRoute>
+            },
+            {
+                path: "/dashboard/wishlists",
+                element: <BuyerRoute><Wishlists /></BuyerRoute>
+            },
+            {
+                path: "/dashBoard/addProduct",
+                element: <SellerRoute><AddProducts /></SellerRoute>
+            },
+            {
+                path: "/dashBoard/myProducts",
+                element: <SellerRoute><MyProducts /></SellerRoute>
+            },
+            {
+                path: "/dashBoard/allBuyers",
+                element: <AdminRoute><AllBuyers /></AdminRoute>
+            },
+            {
+                path: "/dashBoard/allSellers",
+                element: <AdminRoute><AllSellers /></AdminRoute>
             }
         ]
     },
