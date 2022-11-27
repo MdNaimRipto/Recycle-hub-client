@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MdOutlineAddCircleOutline } from "react-icons/md"
+import { AuthContext } from '../../ContextProvider/AuthProvider';
+import { useBuyer } from '../../Hooks/useBuyer';
 
 const AllCar = ({ allCar, setDetails }) => {
+    const { user } = useContext(AuthContext)
+    const [isBuyer] = useBuyer(user?.email)
+
     const { img, name, location, resalePrice, timeUsed, } = allCar
     return (
         <div data-aos="fade-up" className="flex flex-col h-full">
@@ -28,12 +33,28 @@ const AllCar = ({ allCar, setDetails }) => {
                         </div>
                     </div>
                 </div>
-                <label
-                    onClick={() => { setDetails(allCar) }}
-                    htmlFor="details-modal"
-                    className='btn btn-primary rounded-t-none w-full text-white'>
-                    View Details
-                </label>
+                {
+                    isBuyer ?
+                        <label
+                            onClick={() => { setDetails(allCar) }}
+                            htmlFor="details-modal"
+                            className='btn btn-primary rounded-t-none w-full text-white'
+                        >
+                            View Details
+                        </label>
+                        :
+                        <div
+                            className='tooltip w-full'
+                            data-tip="Please use a buyer account to buy any car.">
+                            <label
+                                disabled
+                                htmlFor="details-modal"
+                                className='btn btn-primary rounded-t-none w-full text-white'
+                            >
+                                View Details
+                            </label>
+                        </div>
+                }
             </div>
 
         </div>

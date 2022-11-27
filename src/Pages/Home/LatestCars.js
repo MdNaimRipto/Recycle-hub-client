@@ -1,10 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import BuyNowModal from '../Shared/BuyNowModal';
 import DetailsModal from '../Shared/DetailsModal';
 import { MdOutlineAddCircleOutline } from "react-icons/md"
+import { AuthContext } from '../../ContextProvider/AuthProvider';
+import { useBuyer } from '../../Hooks/useBuyer';
 
 const LatestCars = () => {
+    const { user } = useContext(AuthContext)
+    const [isBuyer] = useBuyer(user?.email)
+
     const [details, setDetails] = useState(null)
     const { data: latestCars = [] } = useQuery({
         queryKey: ["latestCars"],
@@ -47,13 +52,29 @@ const LatestCars = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <label
-                                        onClick={() => { setDetails(category) }}
-                                        htmlFor="details-modal"
-                                        className='btn btn-primary rounded-t-none w-full text-white'
-                                    >
-                                        View Details
-                                    </label>
+                                    {
+                                        isBuyer ?
+                                            <label
+                                                onClick={() => { setDetails(category) }}
+                                                htmlFor="details-modal"
+                                                className='btn btn-primary rounded-t-none w-full text-white'
+                                            >
+                                                View Details
+                                            </label>
+                                            :
+                                            <div
+                                                className='tooltip w-full'
+                                                data-tip="Please use a buyer account to buy any car.">
+                                                <label
+                                                    disabled
+                                                    onClick={() => { setDetails(category) }}
+                                                    htmlFor="details-modal"
+                                                    className='btn btn-primary rounded-t-none w-full text-white'
+                                                >
+                                                    View Details
+                                                </label>
+                                            </div>
+                                    }
                                 </div>
                             </div>
                         )

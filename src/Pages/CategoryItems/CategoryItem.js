@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MdOutlineAddCircleOutline } from "react-icons/md"
+import { AuthContext } from '../../ContextProvider/AuthProvider';
+import { useBuyer } from '../../Hooks/useBuyer';
 
 const CategoryItem = ({ categoryItem, setDetails }) => {
+    const { user } = useContext(AuthContext)
+    const [isBuyer] = useBuyer(user?.email)
+
     const { img, name, location, resalePrice, timeUsed } = categoryItem
 
     return (
@@ -29,13 +34,28 @@ const CategoryItem = ({ categoryItem, setDetails }) => {
                         </div>
                     </div>
                 </div>
-                <label
-                    onClick={() => { setDetails(categoryItem) }}
-                    htmlFor="details-modal"
-                    className='btn btn-primary rounded-t-none w-full text-white'
-                >
-                    View Details
-                </label>
+                {
+                    isBuyer ?
+                        <label
+                            onClick={() => { setDetails(categoryItem) }}
+                            htmlFor="details-modal"
+                            className='btn btn-primary rounded-t-none w-full text-white'
+                        >
+                            View Details
+                        </label>
+                        :
+                        <div
+                            className='tooltip w-full'
+                            data-tip="Please use a buyer account to buy any car.">
+                            <label
+                                disabled
+                                htmlFor="details-modal"
+                                className='btn btn-primary rounded-t-none w-full text-white'
+                            >
+                                View Details
+                            </label>
+                        </div>
+                }
             </div>
             {/* <CategoryDetailsModal details={categoryItem} /> */}
         </div>
