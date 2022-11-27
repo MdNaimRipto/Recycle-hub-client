@@ -4,11 +4,15 @@ import LoginRegisterLayout from "../Layout/LoginRegisterLayout"
 import Main from "../Layout/Main"
 import AllCars from "../Pages/Cars/AllCars"
 import CategoryItems from "../Pages/CategoryItems/CategoryItems"
+
 import Dashboard from "../Pages/Dashboard/Dashboard"
+import MyOrders from "../Pages/Dashboard/MyOrders"
 import Home from "../Pages/Home/Home"
 import Login from "../Pages/LoginRegister/Login"
 import Register from "../Pages/LoginRegister/Register"
 import ErrorPage from "../Pages/Shared/ErrorPage"
+import BuyerRoute from "./BuyerRoute"
+// import Loading from "../Pages/Shared/Loading"
 import PrivateRoute from "./PrivateRoute"
 
 export const router = createBrowserRouter([
@@ -31,9 +35,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/categoryItem/:id",
-                element: <PrivateRoute><CategoryItems /></PrivateRoute>,
-                loader: ({ params }) => {
-                    return fetch(`http://localhost:5000/categoryItem/${params.id}`)
+                element: <CategoryItems />,
+                loader: async ({ params }) => {
+                    return fetch(`http://localhost:5000/categoryItem/${params?.id}`)
                 }
             }
         ]
@@ -46,6 +50,10 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard",
                 element: <Dashboard />
+            },
+            {
+                path: "/dashboard/myOrders",
+                element: <BuyerRoute><MyOrders /></BuyerRoute>
             }
         ]
     },

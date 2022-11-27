@@ -1,8 +1,7 @@
 import React from 'react';
 import { GoVerified } from "react-icons/go"
 
-const DetailsModal = ({ details, setDetails }) => {
-    console.log(details)
+const DetailsModal = ({ details }) => {
     const {
         img,
         name,
@@ -41,9 +40,9 @@ const DetailsModal = ({ details, setDetails }) => {
                                         Model: {name}
                                     </h2>
                                     <p
-                                        className="text-bas md:text-lg pb-2 flex justify-between items-center w-[30%]">
+                                        className="text-bas md:text-lg pb-2 flex items-center w-[40%]">
                                         {
-                                            verified && <GoVerified className='text-blue-600' />
+                                            verified && <GoVerified className='text-blue-600 mr-3' />
                                         }
                                         <small className='font-semibold'>
                                             <span>Seller:</span> {seller}

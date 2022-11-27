@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import Navbar from '../Pages/Shared/Navbar';
 import { AiOutlineMenuUnfold } from "react-icons/ai"
+import { useBuyer } from '../Hooks/useBuyer';
+import { AuthContext } from '../ContextProvider/AuthProvider';
 
 const DashboardLayout = () => {
+    const { user } = useContext(AuthContext)
+    const [isBuyer] = useBuyer(user?.email)
     return (
         <>
             <Navbar />
@@ -22,8 +26,14 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-72 bg-base-100 text-base-content font-semibold">
                         {
                             <>
-                                <li><Link to="/dashboard/myOrders">My Orders</Link></li>
-                                <li><Link to="/dashboard/wishlists">Wishlists</Link></li>
+                                <li><Link to="/dashboard">Dashboard</Link></li>
+                                {
+                                    isBuyer &&
+                                    <>
+                                        <li><Link to="/dashboard/myOrders">My Orders</Link></li>
+                                        <li><Link to="/dashboard/wishlists">Wishlists</Link></li>
+                                    </>
+                                }
                                 <li><Link to="/dashboard/addProduct">Add Product</Link></li>
                                 <li><Link to="/dashboard/myProducts">My Products</Link></li>
                                 <li><Link to="/dashboard/allBuyers">All Buyers</Link></li>

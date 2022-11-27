@@ -36,10 +36,10 @@ const AllCars = () => {
                 </div>
             </div>
             {
-                details !== null && <DetailsModal details={details} setDetails={setDetails} />
+                details !== null && <DetailsModal details={details} />
             }
             {
-                details !== null && <BuyNowModal details={details} />
+                details !== null && <BuyNowModal details={details} setDetails={setDetails} />
             }
         </>
     );
