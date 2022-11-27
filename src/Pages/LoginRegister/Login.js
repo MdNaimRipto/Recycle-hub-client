@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../ContextProvider/AuthProvider';
+import { useToken } from '../../Hooks/useToken';
 import GoogleLogin from './GoogleLogin';
 
 const Login = () => {
@@ -9,10 +10,16 @@ const Login = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('')
+    const [userEmail, setUserEmail] = useState('')
+    const [token] = useToken(userEmail)
 
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/"
+
+    if (token) {
+        navigate(from, { replace: true })
+    }
 
     const handleLogin = (data) => {
         const email = data.email;
@@ -21,7 +28,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
-                navigate(from, { replace: true })
+                setUserEmail(user?.email)
             })
             .catch(err => {
                 console.error(err)

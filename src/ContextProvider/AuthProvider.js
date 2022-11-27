@@ -41,6 +41,7 @@ const AuthProvider = ({ children }) => {
 
     const logout = () => {
         setLoading(true)
+        localStorage.removeItem("token")
         return signOut(auth)
     }
 
@@ -55,13 +56,13 @@ const AuthProvider = ({ children }) => {
     }, [])
 
     const AuthInfo = {
-        userRegister,
-        userLogin,
-        setUser,
-        updateUser,
-        googleLogin,
         user,
         loading,
+        setUser,
+        userRegister,
+        userLogin,
+        updateUser,
+        googleLogin,
         logout
     }
     return (

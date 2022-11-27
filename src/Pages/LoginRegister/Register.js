@@ -2,15 +2,22 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../ContextProvider/AuthProvider';
+import { useToken } from '../../Hooks/useToken';
 import GoogleLogin from './GoogleLogin';
 
 const Register = () => {
     const { userRegister, updateUser } = useContext(AuthContext)
     const [registerError, setRegisterError] = useState('')
+    const [userEmail, setUserEmail] = useState('')
+    const [token] = useToken(userEmail)
 
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/"
+
+    if (token) {
+        navigate(from, { replace: true })
+    }
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const imageHostingKey = process.env.REACT_APP_imgBB_key
@@ -40,7 +47,6 @@ const Register = () => {
                                 photoURL: imgData.data.url
                             }
                             updateUser(userInfo)
-                            navigate(from, { replace: true })
                             saveUserInfo(name, email, userInfo.photoURL, role)
                         })
                         .catch(err => {
@@ -67,6 +73,7 @@ const Register = () => {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
+                    setUserEmail(user?.email)
                 })
         }
     }

@@ -26,6 +26,7 @@ const Steps = () => {
                 </h2>
                 <>
                     <Swiper
+                        data-aos="fade-up"
                         slidesPerView={1}
                         spaceBetween={10}
                         pagination={{

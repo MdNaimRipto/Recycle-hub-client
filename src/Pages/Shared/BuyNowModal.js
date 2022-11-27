@@ -25,7 +25,7 @@ const BuyNowModal = ({ details }) => {
                         }
                         <input name="phone" type="tel" placeholder="Phone Number"
                             className="input w-full mx-auto mb-4" />
-                        <input name="phone" type="tel" placeholder="Meeting Location"
+                        <input name="location" type="text" placeholder="Meeting Location"
                             className="input w-full mx-auto mb-4" />
                         <button
                             type='submit'
