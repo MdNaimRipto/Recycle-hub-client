@@ -6,7 +6,7 @@ import MyProduct from './MyProduct';
 
 const MyProducts = () => {
     const { user, logout } = useContext(AuthContext)
-    const { data: myProducts = [], isLoading } = useQuery({
+    const { data: myProducts = [], isLoading, refetch } = useQuery({
         queryKey: ["myOrders", user?.displayName],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/myProducts?seller=${user?.displayName}`, {
@@ -23,7 +23,6 @@ const MyProducts = () => {
             }
         }
     })
-    console.log(myProducts)
     if (isLoading) {
         return <Loading />
     }
@@ -57,6 +56,7 @@ const MyProducts = () => {
                                                 myProduct={myProduct}
                                                 index={index}
                                                 key={index}
+                                                refetch={refetch}
                                             />)
                                     }
                                 </tbody>
