@@ -42,7 +42,7 @@ const MyProduct = ({ myProduct, index, refetch }) => {
         })
             .then((willUpdate) => {
                 if (willUpdate) {
-                    fetch(`http://localhost:5000/advertisements`, {
+                    fetch(`https://recycle-hub-server.vercel.app/advertisements`, {
                         method: "POST",
                         headers: {
                             "content-type": "application/json"
@@ -60,7 +60,7 @@ const MyProduct = ({ myProduct, index, refetch }) => {
                             else {
                                 toast.error("Could not Advertised. Please Try Again")
                             }
-                            fetch(`http://localhost:5000/allCars/${myProduct._id}`, {
+                            fetch(`https://recycle-hub-server.vercel.app/allCars/${myProduct._id}`, {
                                 method: "PATCH",
                                 headers: {
                                     "content-type": "application/json"
@@ -87,7 +87,7 @@ const MyProduct = ({ myProduct, index, refetch }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    fetch(`http://localhost:5000/allCars/${myProduct._id}`, {
+                    fetch(`https://recycle-hub-server.vercel.app/allCars/${myProduct._id}`, {
                         method: "DELETE",
                         headers: {
                             authorization: `bearer ${localStorage.getItem("token")}`

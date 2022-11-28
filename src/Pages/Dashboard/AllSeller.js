@@ -13,7 +13,7 @@ const AllSeller = ({ allSeller, index, refetch }) => {
         })
             .then((willUpdate) => {
                 if (willUpdate) {
-                    fetch(`http://localhost:5000/users/${allSeller._id}`, {
+                    fetch(`https://recycle-hub-server.vercel.app/users/${allSeller._id}`, {
                         method: "PUT",
                         headers: {
                             "content-type": "application/json"
@@ -47,7 +47,7 @@ const AllSeller = ({ allSeller, index, refetch }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    fetch(`http://localhost:5000/users/${allSeller._id}`, {
+                    fetch(`https://recycle-hub-server.vercel.app/users/${allSeller._id}`, {
                         method: "DELETE",
                         headers: {
                             authorization: `bearer ${localStorage.getItem("token")}`

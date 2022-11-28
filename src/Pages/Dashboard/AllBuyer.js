@@ -14,7 +14,7 @@ const AllBuyer = ({ allBuyer, index, refetch }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    fetch(`http://localhost:5000/users/${allBuyer._id}`, {
+                    fetch(`https://recycle-hub-server.vercel.app/users/${allBuyer._id}`, {
                         method: "DELETE",
                         headers: {
                             authorization: `bearer ${localStorage.getItem("token")}`

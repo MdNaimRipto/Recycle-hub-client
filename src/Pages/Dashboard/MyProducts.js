@@ -9,7 +9,7 @@ const MyProducts = () => {
     const { data: myProducts = [], isLoading, refetch } = useQuery({
         queryKey: ["myOrders", user?.displayName],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myProducts?seller=${user?.displayName}`, {
+            const res = await fetch(`https://recycle-hub-server.vercel.app/myProducts?seller=${user?.displayName}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem("token")}`
                 }

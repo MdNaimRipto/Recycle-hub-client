@@ -38,7 +38,7 @@ const GoogleLogin = () => {
             role: "buyer"
         }
         console.log(user)
-        fetch("http://localhost:5000/users", {
+        fetch("https://recycle-hub-server.vercel.app/users", {
             method: "PUT",
             headers: {
                 "content-type": "application/json"

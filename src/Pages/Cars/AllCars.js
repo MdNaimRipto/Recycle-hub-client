@@ -11,7 +11,7 @@ const AllCars = () => {
     const { data: allCars = [], isLoading } = useQuery({
         queryKey: ["cars"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/allCars")
+            const res = await fetch("https://recycle-hub-server.vercel.app/allCars")
             const data = await res.json()
             return data
         }

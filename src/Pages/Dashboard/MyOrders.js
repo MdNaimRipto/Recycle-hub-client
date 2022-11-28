@@ -10,7 +10,7 @@ const MyOrders = () => {
     const [paymentInfo, setPaymentInfo] = useState(null)
     const [paidStatus, setPaidStatus] = useState(null)
 
-    const url = `http://localhost:5000/orders?email=${user?.email}`
+    const url = `https://recycle-hub-server.vercel.app/orders?email=${user?.email}`
     const { data: orders = [], isLoading, refetch } = useQuery({
         queryKey: ["orders", user?.email],
         queryFn: async () => {

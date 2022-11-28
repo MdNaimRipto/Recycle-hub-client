@@ -4,7 +4,7 @@ export const useAdmin = (email) => {
     const [isAdmin, setIsAdmin] = useState(false)
     const [isAdminLoading, setIsAdminLoading] = useState(true)
     useEffect(() => {
-        fetch(`http://localhost:5000/users/admin/${email}`)
+        fetch(`https://recycle-hub-server.vercel.app/users/admin/${email}`)
             .then(res => res.json())
             .then(data => {
                 if (data.isAdmin === true) {

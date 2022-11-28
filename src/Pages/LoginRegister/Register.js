@@ -65,7 +65,7 @@ const Register = () => {
                 img: img,
                 role: role
             }
-            fetch("http://localhost:5000/users", {
+            fetch("https://recycle-hub-server.vercel.app/users", {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json"

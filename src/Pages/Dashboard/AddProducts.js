@@ -56,7 +56,7 @@ const AddProducts = () => {
                         paid: false,
                         date: format(new Date(), "PP")
                     }
-                    fetch('http://localhost:5000/allCars', {
+                    fetch('https://recycle-hub-server.vercel.app/allCars', {
                         method: "POST",
                         headers: {
                             "content-type": "application/json"

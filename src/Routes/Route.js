@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
                 path: "/categoryItem/:id",
                 element: <PrivateRoute><CategoryItems /></PrivateRoute>,
                 loader: async ({ params }) => {
-                    return fetch(`http://localhost:5000/categoryItem/${params?.id}`)
+                    return fetch(`https://recycle-hub-server.vercel.app/categoryItem/${params?.id}`)
                 }
             },
             {
@@ -79,7 +79,7 @@ export const router = createBrowserRouter([
                 path: "/dashBoard/myProducts",
                 element: <SellerRoute><MyProducts /></SellerRoute>,
                 loader: async () => {
-                    return fetch('http://localhost:5000/allSellers')
+                    return fetch('https://recycle-hub-server.vercel.app/allSellers')
                 }
             },
             {

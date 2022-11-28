@@ -28,7 +28,7 @@ const BuyNowModal = ({ details, setDetails }) => {
             location: location
         }
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://recycle-hub-server.vercel.app/orders', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
