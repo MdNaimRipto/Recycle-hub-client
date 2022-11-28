@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from "@tanstack/react-query"
 import Loading from '../Shared/Loading';
 import SingleCategory from './SingleCategory';
+import axios from "axios"
 
 const Categories = () => {
-    const { data: categories = [], isLoading } = useQuery({
-        queryKey: ['categories'],
-        queryFn: async () => {
-            const req = await fetch("http://localhost:5000/categories")
-            const data = await req.json()
-            return data
-        }
-    })
-    if (isLoading) {
-        return <Loading />
-    }
+    // const { data: categories = [], isLoading } = useQuery({
+    //     queryKey: ['categories'],
+    //     queryFn: async () => {
+    //         const req = await fetch("http://localhost:5000/categories")
+    //         const data = await req.json()
+    //         return data
+    //     }
+    // })
+    const [categories, setCategories] = useState([])
+    useEffect(() => {
+        axios.get("http://localhost:5000/categories")
+            .then(res => {
+                setCategories(res.data)
+            })
+    }, [])
+    // if (isLoading) {
+    //     return <Loading />
+    // }
     return (
         <div>
             <div className="relative px-4 py-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pb-20">

@@ -1,12 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../ContextProvider/AuthProvider';
 import { useQuery } from "@tanstack/react-query"
 import Loading from '../Shared/Loading';
+import PaymentModal from './PaymentModal';
 
 const MyOrders = () => {
     const { user, logout } = useContext(AuthContext)
+
+    const [paymentInfo, setPaymentInfo] = useState(null)
+    const [paidStatus, setPaidStatus] = useState(null)
+
     const url = `http://localhost:5000/orders?email=${user?.email}`
-    const { data: orders = [], isLoading } = useQuery({
+    const { data: orders = [], isLoading, refetch } = useQuery({
         queryKey: ["orders", user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -23,6 +28,8 @@ const MyOrders = () => {
             }
         }
     })
+
+    console.log(orders)
     if (isLoading) {
         return <Loading />
     }
@@ -68,24 +75,13 @@ const MyOrders = () => {
                                                 <td>TK.{order.price}</td>
                                                 <td>
                                                     {
-                                                        !order.paid &&
                                                         <label
                                                             className='btn btn-sm btn-primary text-white'
                                                             htmlFor="payment-modal"
-                                                        // onClick={() => { setPaymentInfo(order) }}
+                                                            onClick={() => { setPaymentInfo(order) }}
                                                         >
                                                             Buy Now
                                                         </label>
-                                                    }{
-                                                        order.treatmentCharge && order.paid &&
-                                                        <>
-                                                            <span className='text-primary'>
-                                                                Paid
-                                                            </span>
-                                                            <span className='block text-sm mt-1 text-gray-400'>
-                                                                ID: {order.transactionId}
-                                                            </span>
-                                                        </>
                                                     }
                                                 </td>
                                             </tr>)
@@ -95,14 +91,15 @@ const MyOrders = () => {
                         </div>
                     </>
             }
-            {/* `{
+            {
                 paymentInfo &&
                 <PaymentModal
+                    setPaidStatus={setPaidStatus}
                     paymentInfo={paymentInfo}
                     setPaymentInfo={setPaymentInfo}
                     refetch={refetch}
                 />
-            }` */}
+            }
         </div>
     );
 };

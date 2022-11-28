@@ -4,9 +4,8 @@ import swal from 'sweetalert';
 
 
 const BuyNowModal = ({ details, setDetails }) => {
-    console.log(details)
     const { user } = useContext(AuthContext)
-    const { brand, img, resalePrice } = details
+    const { brand, img, resalePrice, _id } = details
 
     const handleBooking = (e) => {
         e.preventDefault()
@@ -18,6 +17,7 @@ const BuyNowModal = ({ details, setDetails }) => {
         const location = form.location.value;
 
         const order = {
+            CarId: _id,
             userName: name,
             brand: brand,
             carImage: img,

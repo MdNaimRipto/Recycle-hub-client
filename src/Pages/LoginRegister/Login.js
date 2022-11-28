@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../ContextProvider/AuthProvider';
@@ -18,9 +18,11 @@ const Login = () => {
     const location = useLocation()
     const from = location.state?.from?.pathname || "/"
 
-    if (token) {
-        navigate(from, { replace: true })
-    }
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true })
+        }
+    }, [navigate, from, token])
 
     const handleLogin = (data) => {
         const email = data.email;

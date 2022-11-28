@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../ContextProvider/AuthProvider';
 import { useToken } from '../../Hooks/useToken';
@@ -13,9 +13,11 @@ const GoogleLogin = () => {
     const from = location.state?.from?.pathname || "/"
 
 
-    if (token) {
-        navigate(from, { replace: true })
-    }
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true })
+        }
+    }, [navigate, from, token])
 
     const handleGoogleLogin = () => {
         googleLogin()
