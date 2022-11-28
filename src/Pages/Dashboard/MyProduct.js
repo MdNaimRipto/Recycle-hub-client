@@ -1,8 +1,82 @@
+import { format } from 'date-fns';
 import React from 'react';
 import toast from 'react-hot-toast';
 import swal from 'sweetalert';
 
 const MyProduct = ({ myProduct, index, refetch }) => {
+    const {
+        brand,
+        condition,
+        description,
+        img,
+        location,
+        name,
+        originalPrice,
+        phone,
+        resalePrice,
+        timeUsed,
+        seller,
+    } = myProduct
+
+    const handleAdvertise = () => {
+        const advertise = {
+            seller: seller,
+            name: name,
+            img: img,
+            resalePrice: resalePrice,
+            originalPrice: originalPrice,
+            phone: phone,
+            location: location,
+            condition: condition,
+            brand: brand,
+            description: description,
+            timeUsed: timeUsed,
+            date: format(new Date(), "PP")
+        }
+
+        swal({
+            title: "Are you sure?",
+            text: "Are you really wanted to advertise this product!",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willUpdate) => {
+                if (willUpdate) {
+                    fetch(`http://localhost:5000/advertisements`, {
+                        method: "POST",
+                        headers: {
+                            "content-type": "application/json"
+                        },
+                        body: JSON.stringify(advertise)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.acknowledged) {
+                                console.log(data)
+                                swal(`Product advertised successfully!`, {
+                                    icon: "success",
+                                });
+                            }
+                            else {
+                                toast.error("Could not Advertised. Please Try Again")
+                            }
+                            fetch(`http://localhost:5000/allCars/${myProduct._id}`, {
+                                method: "PATCH",
+                                headers: {
+                                    "content-type": "application/json"
+                                },
+                                body: JSON.stringify({ advertised: true })
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    console.log(data)
+                                    refetch()
+                                })
+                        })
+                }
+            });
+
+    }
     const handleDelete = (_id) => {
         swal({
             title: "Are you sure?",
@@ -48,8 +122,10 @@ const MyProduct = ({ myProduct, index, refetch }) => {
             </td>
             <td>
                 {
-                    !myProduct.paid ?
-                        <button className='btn btn-primary btn-sm text-white'>
+                    !myProduct.advertised ?
+                        <button
+                            onClick={handleAdvertise}
+                            className='btn btn-primary btn-sm text-white'>
                             Advertise
                         </button>
                         : <button className='btn btn-primary btn-sm text-white' disabled>

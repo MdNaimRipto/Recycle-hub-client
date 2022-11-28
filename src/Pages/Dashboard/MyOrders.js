@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../ContextProvider/AuthProvider';
 import { useQuery } from "@tanstack/react-query"
 import Loading from '../Shared/Loading';
-import MyProducts from './MyProducts';
 
 const MyOrders = () => {
     const { user, logout } = useContext(AuthContext)

@@ -1,11 +1,9 @@
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../ContextProvider/AuthProvider';
 import swal from 'sweetalert';
 import { useNavigate } from "react-router-dom"
-import MyProducts from './MyProducts';
 
 const AddProducts = () => {
     const { user } = useContext(AuthContext)

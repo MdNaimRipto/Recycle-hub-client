@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../ContextProvider/AuthProvider';
 import Loading from '../Shared/Loading';
 import MyProduct from './MyProduct';

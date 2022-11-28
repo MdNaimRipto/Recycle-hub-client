@@ -22,13 +22,13 @@ const Blogs = () => {
                             </p>
                             <p className="text-gray-600">
                                 There are four main types of state we need to properly manage in your React apps:
-                                <ul className='list-disc ml-8'>
-                                    <li>Local state</li>
-                                    <li>Global state</li>
-                                    <li>Server state</li>
-                                    <li>URL state</li>
-                                </ul>
                             </p>
+                            <ul className='list-disc ml-8 text-gray-600'>
+                                <li>Local state</li>
+                                <li>Global state</li>
+                                <li>Server state</li>
+                                <li>URL state</li>
+                            </ul>
                         </div>
                         <div>
                             <p className="mb-4 text-xl font-medium">
