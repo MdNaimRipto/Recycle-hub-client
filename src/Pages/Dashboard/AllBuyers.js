@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../Shared/Loading';
 import AllBuyer from './AllBuyer';
+import { AuthContext } from '../../ContextProvider/AuthProvider';
 
 const AllBuyers = () => {
+    const { logout } = useContext(AuthContext)
     const { data: allBuyers, isLoading, refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
@@ -12,8 +14,13 @@ const AllBuyers = () => {
                     authorization: `bearer ${localStorage.getItem("token")}`
                 }
             })
-            const data = res.json()
-            return data
+            if (res.status === 401 || res.status === 403) {
+                logout()
+            }
+            else {
+                const data = await res.json();
+                return data
+            }
         }
     })
     if (isLoading) {
@@ -28,7 +35,7 @@ const AllBuyers = () => {
                     </h2>
                     :
                     <>
-                        <h2 className='text-3xl mb-6'>MY ORDERS</h2>
+                        <h2 className='text-3xl mb-6'>ALL BUYERS</h2>
                         <div className="overflow-x-auto">
                             <table className="table w-full">
                                 {/* <!-- head --> */}

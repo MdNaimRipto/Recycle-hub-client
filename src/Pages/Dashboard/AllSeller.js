@@ -4,6 +4,39 @@ import toast from 'react-hot-toast';
 
 const AllSeller = ({ allSeller, index, refetch }) => {
 
+    const handleVerify = (_id) => {
+        swal({
+            title: "Are you sure?",
+            text: "Are you really wanted to verify this seller!",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willUpdate) => {
+                if (willUpdate) {
+                    fetch(`http://localhost:5000/users/${allSeller._id}`, {
+                        method: "PUT",
+                        headers: {
+                            "content-type": "application/json"
+                        },
+                        body: JSON.stringify({ verified: true })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.acknowledged) {
+                                console.log(data)
+                                swal(`Successfully verified!`, {
+                                    icon: "success",
+                                });
+                                refetch()
+                            }
+                            else {
+                                toast.error("Could not verify. Please Try Again")
+                            }
+                        })
+                }
+            });
+    }
+
     const handleDelete = (_id) => {
         swal({
             title: "Are you sure?",
@@ -57,9 +90,19 @@ const AllSeller = ({ allSeller, index, refetch }) => {
                     <td>{allSeller.user.name}</td>
                     <td>{allSeller.user.email}</td>
                     <td>
-                        <button className='btn btn-primary btn-sm text-white'>
-                            Verify
-                        </button>
+                        {
+                            !allSeller.verified ?
+                                <button
+                                    onClick={() => { handleVerify(allSeller._id) }}
+                                    className='btn btn-primary btn-sm text-white'>
+                                    Verify
+                                </button>
+                                : <button
+                                    disabled
+                                    className='btn btn-primary btn-sm text-white'>
+                                    Verified
+                                </button>
+                        }
                     </td>
                     <td>
                         <button
