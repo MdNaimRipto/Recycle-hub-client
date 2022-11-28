@@ -29,7 +29,7 @@ const MyProduct = ({ myProduct, index, refetch }) => {
             location: location,
             condition: condition,
             brand: brand,
-            description: description,
+            discreption: description,
             timeUsed: timeUsed,
             date: format(new Date(), "PP")
         }
