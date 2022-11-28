@@ -77,7 +77,10 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/dashBoard/myProducts",
-                element: <SellerRoute><MyProducts /></SellerRoute>
+                element: <SellerRoute><MyProducts /></SellerRoute>,
+                loader: async () => {
+                    return fetch('http://localhost:5000/allSellers')
+                }
             },
             {
                 path: "/dashBoard/allBuyers",
