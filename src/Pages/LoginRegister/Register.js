@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../ContextProvider/AuthProvider';
 import { useToken } from '../../Hooks/useToken';
@@ -50,10 +51,26 @@ const Register = () => {
                             }
                             updateUser(userInfo)
                             saveUserInfo(name, email, userInfo.photoURL, role)
+                            toast.success('Registration Successful!',
+                                {
+                                    style: {
+                                        borderRadius: '10px',
+                                        background: '#333',
+                                        color: '#fff',
+                                    },
+                                })
                         })
                         .catch(err => {
                             console.error(err)
                             setRegisterError(err.message)
+                            toast.error('Registration Failed!',
+                                {
+                                    style: {
+                                        borderRadius: '10px',
+                                        background: '#333',
+                                        color: '#fff',
+                                    },
+                                })
                         })
                 }
             })

@@ -14,11 +14,7 @@ const Advertisements = () => {
     const { data: advertisements = [] } = useQuery({
         queryKey: ["advertisements"],
         queryFn: async () => {
-            const res = await fetch('https://recycle-hub-server.vercel.app/advertisements', {
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('token')}`
-                }
-            })
+            const res = await fetch('https://recycle-hub-server.vercel.app/advertisements')
             const data = await res.json()
             return data
         }
@@ -59,7 +55,7 @@ const Advertisements = () => {
                                             </div>
                                         </div>
                                         {
-                                            isBuyer ?
+                                            isBuyer && user?.uid ?
                                                 <label
                                                     onClick={() => { setDetails(advertisement) }}
                                                     htmlFor="details-modal"

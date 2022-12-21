@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../ContextProvider/AuthProvider';
 import { useToken } from '../../Hooks/useToken';
@@ -25,9 +26,25 @@ const GoogleLogin = () => {
                 const user = result.user
                 setUserEmail(user?.email)
                 saveGoogleUserInfo(user.displayName, user.email, user.photoURL)
+                toast.success('Login Successful!',
+                    {
+                        style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                        },
+                    })
             })
             .catch(err => {
                 console.error(err)
+                toast.error('Login Failed!',
+                    {
+                        style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                        },
+                    })
             })
     }
     const saveGoogleUserInfo = (name, email, img) => {
