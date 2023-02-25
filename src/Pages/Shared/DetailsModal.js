@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { GoVerified } from "react-icons/go"
+import { AuthContext } from '../../ContextProvider/AuthProvider';
+import { useBuyer } from '../../Hooks/useBuyer';
 
 const DetailsModal = ({ details }) => {
+    const { user } = useContext(AuthContext)
+    const [isBuyer] = useBuyer(user?.email)
+
     const {
         img,
         name,
@@ -74,9 +79,20 @@ const DetailsModal = ({ details }) => {
                                     <p className="text-bas md:text-lg pb-2">
                                         <span className='font-semibold'>Description:</span> {discreption}
                                     </p>
-                                    <label htmlFor="buyNow-modal" className="btn btn-primary w-full mt-3">
-                                        Book Now
-                                    </label>
+                                    {
+                                        isBuyer && user?.uid ?
+                                            <label htmlFor="buyNow-modal" className="btn btn-primary w-full mt-3">
+                                                Book Now
+                                            </label>
+                                            :
+                                            <div
+                                                className='tooltip w-full'
+                                                data-tip="Please use a buyer account to buy any car.">
+                                                <button htmlFor="buyNow-modal" className="btn btn-disabled w-full mt-3 disabled">
+                                                    Book Now
+                                                </button>
+                                            </div>
+                                    }
                                 </div>
                             </div>
 

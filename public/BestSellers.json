@@ -1,0 +1,26 @@
+[
+    {
+        "img": "https://i.ibb.co/jbmHf43/dealer-1.webp",
+        "name": "Quality Auto Services",
+        "location": "Dhaka",
+        "phone": "+880-191-222-3333"
+    },
+    {
+        "img": "https://i.ibb.co/k66CNgb/dealer-2.webp",
+        "name": "JAPA Auto Parts",
+        "location": "Chattogram",
+        "phone": "+880-162-333-4444"
+    },
+    {
+        "img": "https://i.ibb.co/kGNd0fG/dealer-3.webp",
+        "name": "Precision Tune Auto Care",
+        "location": "Sylhet",
+        "phone": "+880-183-444-5555"
+    },
+    {
+        "img": "https://i.ibb.co/c8LzksJ/dealer-4.webp",
+        "name": "Affordable Automotive",
+        "location": "Khulna",
+        "phone": "+880-154-555-6666"
+    }
+]

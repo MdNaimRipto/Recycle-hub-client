@@ -12,7 +12,7 @@ const Navbar = () => {
         localStorage.setItem("dark-mode", !dark)
     }
     useEffect(() => {
-        if (dark) {
+        if (!dark) {
             document.querySelector("html").setAttribute("data-theme", "dark")
         }
         else {
@@ -43,10 +43,6 @@ const Navbar = () => {
                                 <Link className="justify-between">
                                     Profile
                                 </Link>
-                            </li>
-                            <li className='flex justify-between items-center'>
-                                <Link>Dark Mode</Link>
-                                <input type="checkbox" onClick={handleDark} className="toggle" defaultChecked />
                             </li>
                             <li><button onClick={logout}>Logout</button></li>
                         </ul>
@@ -79,21 +75,16 @@ const Navbar = () => {
                                         Profile
                                     </Link>
                                 </li>
-                                <li className='flex justify-between items-center flex-row'>
-                                    <Link>Dark Mode</Link>
-                                    <input type="checkbox" onClick={handleDark} className="toggle" defaultChecked />
-                                </li>
                                 <li><button onClick={logout}>Logout</button></li>
                             </ul>
                         </div>
                     }
                 </div>
                 <Link to="/"
-                    className="font-bold flex justify-between items-center w-[52%] md:w-[33%]">
-                    <div className='w-1/4'>
+                    className="">
+                    <div className='w-[80%] lg:w-full'>
                         <img src={logo} alt="" />
                     </div>
-                    <span className='text-2xl md:text-[30px] lg:text-4xl'>Recycle Hub</span>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">

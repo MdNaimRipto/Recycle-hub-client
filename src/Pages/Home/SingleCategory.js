@@ -8,7 +8,7 @@ const SingleCategory = ({ category }) => {
             <Link
                 to={`/categoryItem/${id}`}
                 className="flex flex-col justify-between overflow-hidden transition-shadow duration-200 rounded shadow-xl group hover:shadow-2xl text-center">
-                <button className="p-5 hover:bg-accent">
+                <button className="py-8 bg-[#191919] hover:bg-accent duration-300">
                     <div
                         className="flex items-center justify-center w-20 h-10 mt-2 mb-4 rounded-full mx-auto">
                         <img src={img} alt="" />

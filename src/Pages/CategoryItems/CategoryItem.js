@@ -34,28 +34,13 @@ const CategoryItem = ({ categoryItem, setDetails }) => {
                         </div>
                     </div>
                 </div>
-                {
-                    isBuyer ?
-                        <label
-                            onClick={() => { setDetails(categoryItem) }}
-                            htmlFor="details-modal"
-                            className='btn btn-primary rounded-t-none w-full text-white'
-                        >
-                            View Details
-                        </label>
-                        :
-                        <div
-                            className='tooltip w-full'
-                            data-tip="Please use a buyer account to buy any car.">
-                            <label
-                                disabled
-                                htmlFor="details-modal"
-                                className='btn btn-primary rounded-t-none w-full text-white'
-                            >
-                                View Details
-                            </label>
-                        </div>
-                }
+                <label
+                    onClick={() => { setDetails(categoryItem) }}
+                    htmlFor="details-modal"
+                    className='btn btn-primary rounded-t-none w-full text-white'
+                >
+                    View Details
+                </label>
             </div>
             {/* <CategoryDetailsModal details={categoryItem} /> */}
         </div>

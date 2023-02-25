@@ -54,29 +54,13 @@ const Advertisements = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        {
-                                            isBuyer && user?.uid ?
-                                                <label
-                                                    onClick={() => { setDetails(advertisement) }}
-                                                    htmlFor="details-modal"
-                                                    className='btn btn-primary rounded-t-none w-full text-white'
-                                                >
-                                                    View Details
-                                                </label>
-                                                :
-                                                <div
-                                                    className='tooltip w-full'
-                                                    data-tip="Please use a buyer account to buy any car.">
-                                                    <label
-                                                        disabled
-                                                        onClick={() => { setDetails(advertisement) }}
-                                                        htmlFor="details-modal"
-                                                        className='btn btn-primary rounded-t-none w-full text-white'
-                                                    >
-                                                        View Details
-                                                    </label>
-                                                </div>
-                                        }
+                                        <label
+                                            onClick={() => { setDetails(advertisement) }}
+                                            htmlFor="details-modal"
+                                            className='btn btn-primary rounded-t-none w-full text-white'
+                                        >
+                                            View Details
+                                        </label>
                                     </div>
                                 </div>
                             )

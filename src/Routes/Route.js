@@ -39,11 +39,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/allCars",
-                element: <PrivateRoute><AllCars /></PrivateRoute>
+                element: <AllCars />
             },
             {
                 path: "/categoryItem/:id",
-                element: <PrivateRoute><CategoryItems /></PrivateRoute>,
+                element: <CategoryItems />,
                 loader: async ({ params }) => {
                     return fetch(`https://recycle-hub-server.vercel.app/categoryItem/${params?.id}`)
                 }
